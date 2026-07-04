@@ -14,11 +14,16 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg)
 	{
-	case WM_INITDIALOG: 
+	case WM_INITDIALOG:  //Отрабатывает один раз, при запуске окна.
 		break;
-	case WM_COMMAND:
+	case WM_COMMAND:	//Отработка нажатия кнопок, действий мышью, и т.д.
+		switch (LOWORD(wParam))
+		{
+		case IDOK: MessageBox(hwnd, "Была нажата кнопка ОК!", "Info", MB_OK | MB_ICONINFORMATION); break;
+		case IDCANCEL: EndDialog(hwnd, 0);
+		}
 		break;
-	case WM_CLOSE:
+	case WM_CLOSE:		//Отрабатывает при нажатии на кнопку закрытия окна "Х".
 		EndDialog(hwnd, 0);
 		break;
 	}
